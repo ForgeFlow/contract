@@ -468,14 +468,14 @@ class ContractLine(models.Model):
     )
     def _check_last_date_invoiced(self):
         for rec in self.filtered("last_date_invoiced"):
-            if rec.date_end and rec.date_end < rec.last_date_invoiced:
-                raise ValidationError(
-                    _(
-                        "You can't have the end date before the date of last "
-                        "invoice for the contract line '%s'"
-                    )
-                    % rec.name
-                )
+            # if rec.date_end and rec.date_end < rec.last_date_invoiced:
+            #    raise ValidationError(
+            #        _(
+            #            "You can't have the end date before the date of last "
+            #            "invoice for the contract line '%s'"
+            #        )
+            #        % rec.name
+            #    )
             if not rec.contract_id.line_recurrence:
                 continue
             if rec.date_start and rec.date_start > rec.last_date_invoiced:
